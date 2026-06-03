@@ -1,3 +1,5 @@
+const path = require("path");
+
 const dotenv = require("dotenv");
 dotenv.config();
 console.log("ENV check:", {
@@ -7,6 +9,10 @@ console.log("ENV check:", {
 
 const express = require("express");
 const cors = require("cors");
+
+const app = express();
+
+app.use(cors({ origin: true, credentials: true }));
 const mongoose = require("mongoose");
 
 const authRoutes = require("./routes/authRoutes");
@@ -19,7 +25,6 @@ const mptMarketplaceRoutes = require("./routes/mptMarketplaceRoutes");
 const eventRoutes = require("./routes/eventRoutes");
 const refundRoutes = require("./routes/refundRoutes");
 
-const app = express();
 
 app.use(cors());
 app.use(
@@ -87,3 +92,4 @@ mongoose
       console.log(`Server running on port ${PORT} (no MongoDB)`);
     });
   });
+
